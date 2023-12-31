@@ -1,10 +1,10 @@
-import Counter from "./components/Counter/Counter"
+import Users from "./components/Users/Users"
 
 function App() {
 
   return (
     <>
-      <Counter />
+      <Users />
     </>
   )
 
