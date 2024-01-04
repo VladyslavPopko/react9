@@ -10,11 +10,20 @@ const UsersDetails = () => {
     if (!params.userId) return;
 
     const getUser = async () => {
-      const res = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${params.userId}`
-      );
-      const data = await res.json();
-      setUser(data);
+      try {
+        const res = await fetch(
+          `https://jsonplaceholder.typicode.com/users/${params.userId}`
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch");
+        }
+
+        const data = await res.json();
+        setUser(data);
+      } catch (e) {
+        console.error(e.message);
+      }
     };
 
     getUser();

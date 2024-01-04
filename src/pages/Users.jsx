@@ -6,9 +6,18 @@ const Users = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await res.json();
-      setUsers(data);
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/users");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch");
+        }
+
+        const data = await res.json();
+        setUsers(data);
+      } catch (e) {
+        console.error(e.message);
+      }
     };
 
     getUsers();
